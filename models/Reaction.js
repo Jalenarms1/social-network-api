@@ -18,13 +18,12 @@ const reactionSchema = new Schema(
         },
         createdAt: {
             type: Date,
-            default: Date.now,
+            get: function(createdAt) {
+                return createdAt.toDateString();
+            }
         }
     }
+    
 )
-
-reactionSchema.virtual('formattedDate').get(function () {
-    return this.createdAt.toDateString();
-})
 
 module.exports = reactionSchema;
